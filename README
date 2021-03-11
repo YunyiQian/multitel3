@@ -1,0 +1,62 @@
+/*Multitel3: multiple phases for teleseismic body waves Green's functions in three components*/
+
+
+/*The software package to calculate teleseimic Green functions for CAPtel or finite fault inversions*/
+/*Yunyi Qian, USTC, 01-27-2018*/
+yyqian@mail.ustc.edu.cn
+or
+yyqian@ustc.edu.cn
+/*Yunyi Qian, SUSTech, 03-18-2020*/
+qianyy@sustech.edu.cn
+
+
+Phases included: P, pP, sP, PcP, pPcP, sPcP, S, sS, ScS, sScS and all crustal (source and receiver regions) reflected phases et al.
+distance ranges: 30deg. to 90 deg.
+Welcome citing "Qian, Yunyi, et al. "The effects of core-reflected waves on finite fault inversions with teleseismic body wave data." Geophysical Journal International 211.2 (2017): 958-973."
+
+
+Multitel3_absolutetime
+t1 and t2 are the arrival time for P and SH respectively.
+t3 is for the beginning of waveforms
+user1 is the takeoff angle for P
+output is in cm with a moment of 1e20 dyne cm
+
+
+make
+chmod 755 *pl
+sh multitel.sh
+(change the depth and distance ranges in multitel.sh file)
+
+
+
+There are two input models:
+sp6(could change the name and use different model, such as ak135): source and receiver crust model for Haskell matrix
+format:
+#model
+source_layer_num vp1 vs1 rho1 thickness1
+                 vp2 vs2 rho2 thickness2
+                 ...
+receiver_layer_num vp1 vs1 rho1 thickness1
+                   vp2 vs2 rho2 thickness2
+                   ...
+
+raysp6prem: 1D standard model for ray thoery
+format:
+layer_num
+dep1 vp1 vs1 rho1 qp1 qs1
+dep2 vp2 vs2 rho2 qp2 qs2
+...
+
+
+There are three output files:
+sp6_10: The improved Green's functions containing both direct and core-reflected phases
+sp6core_10: PcP and ScS Green's functions
+sp6direct_10: traditional P and SH Green's functions
+
+0    1      2    45-down-dip slip (DD)
+3    4      5    vertical dip-slip (DS)
+6    7      8    vertical strike-slip (SS)
+P(z) P(r)  S(t)
+
+If you want to know more information please see:
+Qian, Yunyi, et al. "The effects of core-reflected waves on finite fault inversions with teleseismic body wave data." Geophysical Journal International 211.2 (2017): 958-973.
